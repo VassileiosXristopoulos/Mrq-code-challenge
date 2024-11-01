@@ -1,0 +1,15 @@
+.symbolsView__content {
+  display: flex;
+  flex-direction: column-reverse;
+}
+@media (min-width: 992px) {
+  .symbolsView__content {
+    flex-direction: row;
+  }
+  .symbolsView__cards {
+    flex: 1;
+    height: calc(100vh - 200px);
+    overflow-y: auto;
+  }
+}
+
