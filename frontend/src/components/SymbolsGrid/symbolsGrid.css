@@ -1,7 +1,7 @@
 .symbolsView__symbolsGrid {
   display: flex;
   flex-wrap: wrap;
-  background: gray;
+  background: #D3D3D3;
   padding: 20px;
   gap: 15px;
 }

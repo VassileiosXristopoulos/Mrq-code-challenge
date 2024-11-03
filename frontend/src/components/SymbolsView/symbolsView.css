@@ -5,6 +5,8 @@
 @media (min-width: 1024px) {
   .symbolsView__content {
     flex-direction: row;
+    gap: 16px;
+    margin-top: 32px;
   }
   .symbolsView__cards {
     flex: 1;
