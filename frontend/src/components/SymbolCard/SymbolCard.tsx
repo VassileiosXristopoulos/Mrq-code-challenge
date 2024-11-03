@@ -2,6 +2,8 @@ import './symbolCard.css';
 import { ReactComponent as CompanyIcon } from '@/assets/company.svg';
 import { useAppSelector } from '@/hooks/redux';
 import ListItem from '@/components/ListItem';
+import TrendSymbol from '../TrendSymbol/TrendSymbol';
+import StockPrice from '../StockPrice/StockPrice';
 
 type SymbolCardProps = {
   id: string;
@@ -16,12 +18,17 @@ const SymbolCard = ({ id, onClick, price }: SymbolCardProps) => {
   };
   return (
     <div onClick={handleOnClick} className="symbolCard">
-      <div>
-        {id} - {trend}
+      <div className='symbolCard__header'>
+        <div className="symbolCard__header__id">{id}</div>
+        <TrendSymbol classesProp={"symbolCard__header__trend"} trend={trend} width={30} height={30} />
       </div>
-      <div>Price:</div>
-      <div>{price || '--'} </div>
-      <ListItem Icon={<CompanyIcon />} label={companyName} />
+      <div className="symbolCard__content">
+        <div className="symbolCard__priceSection">
+          <div className='symbolCard_priceSection__label'>Price:</div>
+          <StockPrice classesProp={"symbolCard_priceSection__price"} price={price} />
+        </div>
+        <ListItem Icon={<CompanyIcon />} label={companyName} />
+      </div>
     </div>
   );
 };

@@ -1,9 +1,39 @@
 .symbolCard {
-  border: 2px solid black;
   flex: 1 0 100%;
   max-width: 100%;
   box-sizing: border-box;
   padding: 10px;
+}
+
+.symbolCard__header {
+  position: relative;
+  background-color: #000000;
+  color: #FFFFFF;
+  padding: 4px;
+  font-weight: 600;
+}
+
+.symbolCard__content {
+  background-color: #FFFFFF;
+  padding: 10px 8px;
+}
+
+.symbolCard__header__trend {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+}
+
+.symbolCard__priceSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 10px;
+}
+
+.symbolCard_priceSection__price {
+  font-weight: 700;
+  font-size: 24px;
 }
 
 @media (min-width: 576px) {
