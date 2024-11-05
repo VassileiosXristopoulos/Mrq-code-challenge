@@ -2,7 +2,29 @@
   flex: 1 0 100%;
   max-width: 100%;
   box-sizing: border-box;
-  padding: 10px;
+}
+
+.symbolCard__up {
+  -webkit-box-shadow: -1px 2px 17px 3px rgba(0,255,0,1);
+  -moz-box-shadow: -1px 2px 17px 3px rgba(0,255,0,1);
+  box-shadow: -1px 2px 17px 3px rgba(0,255,0,1);
+}
+
+.symbolCard__down {
+  -webkit-box-shadow: -1px 2px 17px 3px rgba(255,0,0,1);
+  -moz-box-shadow: -1px 2px 17px 3px rgba(255,0,0,1);
+  box-shadow: -1px 2px 17px 3px rgba(255,0,0,1);
+}
+
+.symbolCard__focused {
+  transform: scale(1.1);
+  -webkit-box-shadow: -1px 2px 17px 3px #000000;
+  -moz-box-shadow: -1px 2px 17px 3px #000000;
+  box-shadow: -1px 2px 17px 3px #000000;
+}
+
+.symbolCard__not_focused {
+  transform: scale(0.8);
 }
 
 .symbolCard:hover {
