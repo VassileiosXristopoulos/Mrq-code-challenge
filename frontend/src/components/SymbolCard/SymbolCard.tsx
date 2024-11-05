@@ -1,5 +1,7 @@
 import './symbolCard.css';
 import { ReactComponent as CompanyIcon } from '@/assets/company.svg';
+import { ReactComponent as IndustryIcon } from '@/assets/industry.svg';
+import { ReactComponent as MarketCapIcon } from '@/assets/market_cap.svg';
 import { useAppSelector } from '@/hooks/redux';
 import ListItem from '@/components/ListItem';
 import TrendSymbol from '../TrendSymbol/TrendSymbol';
@@ -80,8 +82,8 @@ const SymbolCard = ({ id, onClick, price }: SymbolCardProps) => {
           <StockPrice classesProp={"symbolCard_priceSection__price"} price={price} />
         </div>
         <ListItem Icon={<CompanyIcon />} label={companyName} />
-        <ListItem Icon={<CompanyIcon />} label={industry} />
-        <ListItem Icon={<CompanyIcon />} label={formatCurrency(marketCap)} />
+        <ListItem Icon={<IndustryIcon />} label={industry} />
+        <ListItem Icon={<MarketCapIcon />} label={formatCurrency(marketCap)} />
       </div>
     </div>
   );
