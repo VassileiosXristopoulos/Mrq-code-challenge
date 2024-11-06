@@ -52,7 +52,7 @@ const SymbolCard = ({ id, onClick, price }: SymbolCardProps) => {
       newClassNames += ' symbolCard__shake';
     }
     
-    if(priceDifference !== 0) {
+    if(price && previousPrice && priceDifference !== 0) {
       newClassNames += price > previousPrice ? ' symbolCard__up' : ' symbolCard__down';
       setCardClassNames(newClassNames); // Update class names for color change
       setTimeout(() => {
@@ -71,19 +71,21 @@ const SymbolCard = ({ id, onClick, price }: SymbolCardProps) => {
   }
   
   return (
-    <div onClick={handleOnClick} className={`symbolCard ${cardClassNames} ${getFocusedClass()}`}>
-      <div className='symbolCard__header'>
-        <div className="symbolCard__header__id">{id}</div>
-        <TrendSymbol classesProp={"symbolCard__header__trend"} trend={trend} width={30} height={30} />
-      </div>
-      <div className="symbolCard__content">
-        <div className="symbolCard__priceSection">
-          <div className='symbolCard_priceSection__label'>Price:</div>
-          <StockPrice classesProp={"symbolCard_priceSection__price"} price={price} />
+    <div onClick={handleOnClick} className={`symbolCard ${getFocusedClass()}`}>
+      <div className={`symbolCard__inner ${cardClassNames}`}>
+        <div className='symbolCard__header'>
+          <div className="symbolCard__header__id">{id}</div>
+          <TrendSymbol classesProp={"symbolCard__header__trend"} trend={trend} width={30} height={30} />
         </div>
-        <ListItem Icon={<CompanyIcon />} label={companyName} />
-        <ListItem Icon={<IndustryIcon />} label={industry} />
-        <ListItem Icon={<MarketCapIcon />} label={formatCurrency(marketCap)} />
+        <div className="symbolCard__content">
+          <div className="symbolCard__priceSection">
+            <div className='symbolCard_priceSection__label'>Price:</div>
+            <StockPrice classesProp={"symbolCard_priceSection__price"} price={price} />
+          </div>
+          <ListItem Icon={<CompanyIcon />} label={companyName} />
+          <ListItem Icon={<IndustryIcon />} label={industry} />
+          <ListItem Icon={<MarketCapIcon />} label={formatCurrency(marketCap)} />
+        </div>
       </div>
     </div>
   );
