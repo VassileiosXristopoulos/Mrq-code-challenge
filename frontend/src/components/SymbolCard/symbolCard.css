@@ -6,22 +6,22 @@
 }
 
 .symbolCard__up {
-  -webkit-box-shadow: -1px 2px 17px 3px rgba(0,255,0,1);
-  -moz-box-shadow: -1px 2px 17px 3px rgba(0,255,0,1);
-  box-shadow: -1px 2px 17px 3px rgba(0,255,0,1);
+  -webkit-box-shadow: -1px 2px 17px 3px var(--colorGreen);
+  -moz-box-shadow: -1px 2px 17px 3px var(--colorGreen);
+  box-shadow: -1px 2px 17px 3px var(--colorGreen);
 }
 
 .symbolCard__down {
-  -webkit-box-shadow: -1px 2px 17px 3px rgba(255,0,0,1);
-  -moz-box-shadow: -1px 2px 17px 3px rgba(255,0,0,1);
-  box-shadow: -1px 2px 17px 3px rgba(255,0,0,1);
+  -webkit-box-shadow: -1px 2px 17px 3px var(--colorRed);
+  -moz-box-shadow: -1px 2px 17px 3px var(--colorRed);
+  box-shadow: -1px 2px 17px 3px var(--colorRed);
 }
 
 .symbolCard__focused {
   transform: scale(1.1);
-  -webkit-box-shadow: -1px 2px 17px 3px #000000;
-  -moz-box-shadow: -1px 2px 17px 3px #000000;
-  box-shadow: -1px 2px 17px 3px #000000;
+  -webkit-box-shadow: -1px 2px 17px 3px var(--colorDark);
+  -moz-box-shadow: -1px 2px 17px 3px var(--colorDark);
+  box-shadow: -1px 2px 17px 3px var(--colorDark);
 }
 
 .symbolCard__not_focused {
@@ -34,8 +34,8 @@
 
 .symbolCard__header {
   position: relative;
-  background-color: #000000;
-  color: #FFFFFF;
+  background-color: var(--colorDark);
+  color: var(--colorWhite);
   padding: 4px 8px;
   font-size: 20px;
   line-height: 150%;
@@ -44,7 +44,7 @@
 }
 
 .symbolCard__content {
-  background-color: #FFFFFF;
+  background-color: var(--colorWhite);
   padding: 10px 8px;
   border-radius: 0 0 5px 5px;
 }
