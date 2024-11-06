@@ -15,6 +15,7 @@ type ListItemProps = {
     | undefined;
 };
 const ListItem = ({ Icon, label, spacing }: ListItemProps) => {
+  console.log("listitem re-rendered!")
   return (
     <div style={{ justifyContent: spacing }} className={`listItem`}>
       <div className="listItem__icon">{Icon}</div>
@@ -23,4 +24,4 @@ const ListItem = ({ Icon, label, spacing }: ListItemProps) => {
   );
 };
 
-export default ListItem;
+export default React.memo(ListItem);

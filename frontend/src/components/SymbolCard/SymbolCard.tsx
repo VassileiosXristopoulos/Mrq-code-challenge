@@ -8,6 +8,7 @@ import TrendSymbol from '../TrendSymbol/TrendSymbol';
 import StockPrice from '../StockPrice/StockPrice';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { formatCurrency } from '@/utilities/helpers';
+import SymbolCardHeader from './SymbolCardHeader';
 
 type SymbolCardProps = {
   id: string;
@@ -15,7 +16,12 @@ type SymbolCardProps = {
   price: number;
 };
 
+
 const SymbolCard = ({ id, onClick, price }: SymbolCardProps) => {
+  const companyIconMemo = useMemo(() => <CompanyIcon />, []);
+  const industryIconMemo = useMemo(() => <IndustryIcon />, []);
+  const marketCapIconMemo = useMemo(() => <MarketCapIcon />, []);
+  
   const previousPriceRef = useRef(price); // Store the previous price without causing re-renders
   const shakeRef = useRef(false); // Track shake status without causing re-renders
   const displayDifferenceRef = useRef(false); // Track color display status without re-renders
@@ -61,30 +67,25 @@ const SymbolCard = ({ id, onClick, price }: SymbolCardProps) => {
     }
   }, [price]);
   
-  const getFocusedClass = () => {
-    let focusedClass = '';
-    if(activeSymbol) {
-      focusedClass = activeSymbol === id ? "symbolCard__focused" : "symbolCard__not_focused";
+  const focusedClass = useMemo(() => {
+    if (activeSymbol) {
+      return activeSymbol === id ? "symbolCard__focused" : "symbolCard__not_focused";
     }
-    
-    return focusedClass;
-  }
+    return '';
+  }, [activeSymbol, id]);
   
   return (
-    <div onClick={handleOnClick} className={`symbolCard ${getFocusedClass()}`}>
+    <div onClick={handleOnClick} className={`symbolCard ${focusedClass}`}>
       <div className={`symbolCard__inner ${cardClassNames}`}>
-        <div className='symbolCard__header'>
-          <div className="symbolCard__header__id">{id}</div>
-          <TrendSymbol classesProp={"symbolCard__header__trend"} trend={trend} width={30} height={30} />
-        </div>
+        <SymbolCardHeader id={id} trend={trend} />
         <div className="symbolCard__content">
           <div className="symbolCard__priceSection">
             <div className='symbolCard_priceSection__label'>Price:</div>
             <StockPrice classesProp={"symbolCard_priceSection__price"} price={price} />
           </div>
-          <ListItem Icon={<CompanyIcon />} label={companyName} />
-          <ListItem Icon={<IndustryIcon />} label={industry} />
-          <ListItem Icon={<MarketCapIcon />} label={formatCurrency(marketCap)} />
+          <ListItem Icon={companyIconMemo} label={companyName} />
+          <ListItem Icon={industryIconMemo} label={industry} />
+          <ListItem Icon={marketCapIconMemo} label={formatCurrency(marketCap)} />
         </div>
       </div>
     </div>
