@@ -80,7 +80,7 @@ const SymbolCard = ({ id, onClick, price }: SymbolCardProps) => {
         <SymbolCardHeader id={id} trend={trend} />
         <div className="symbolCard__content">
           <div className="symbolCard__priceSection">
-            <div className='symbolCard_priceSection__label'>Price:</div>
+            <div className='symbolCard_priceSection__label'>PRICE:</div>
             <StockPrice classesProp={"symbolCard_priceSection__price"} price={price} />
           </div>
           <ListItem Icon={companyIconMemo} label={companyName} />
