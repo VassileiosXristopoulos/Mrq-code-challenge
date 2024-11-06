@@ -4,11 +4,13 @@ import { ReactComponent as IndustryIcon } from '@/assets/industry.svg';
 import { ReactComponent as MarketCapIcon } from '@/assets/market_cap.svg';
 import { useAppSelector } from '@/hooks/redux';
 import ListItem from '@/components/ListItem';
-import TrendSymbol from '../TrendSymbol/TrendSymbol';
 import StockPrice from '../StockPrice/StockPrice';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo } from 'react';
 import { formatCurrency } from '@/utilities/helpers';
 import SymbolCardHeader from './SymbolCardHeader';
+import useFocusedEffect from '@/hooks/useFocusedEffect';
+import usePriceChangeEffect from '@/hooks/usePriceChangeEffect';
+import useShakeEffect from '@/hooks/useShakeEffect';
 
 type SymbolCardProps = {
   id: string;
@@ -16,67 +18,24 @@ type SymbolCardProps = {
   price: number;
 };
 
-
 const SymbolCard = ({ id, onClick, price }: SymbolCardProps) => {
   const companyIconMemo = useMemo(() => <CompanyIcon />, []);
   const industryIconMemo = useMemo(() => <IndustryIcon />, []);
   const marketCapIconMemo = useMemo(() => <MarketCapIcon />, []);
   
-  const previousPriceRef = useRef(price); // Store the previous price without causing re-renders
-  const shakeRef = useRef(false); // Track shake status without causing re-renders
-  const displayDifferenceRef = useRef(false); // Track color display status without re-renders
-  const [cardClassNames, setCardClassNames] = useState('');
   const { trend, companyName, industry, marketCap } = useAppSelector((state) => state.stocks.entities[id]);
   const activeSymbol = useAppSelector((state) => state.store.activeSymbol);
+  const focusedClass = useFocusedEffect(activeSymbol, id); // Use custom hook for focused state
+  const shakeClass = useShakeEffect(price); // Use custom hook for shake animation
+  const upDownClass = usePriceChangeEffect(price); // Use custom hook for up/down effect
+  
   const handleOnClick = () => {
     onClick(id);
   };
-  
-  useEffect(() => {
-    const previousPrice = previousPriceRef.current;
-    const priceDifference = price - previousPrice;
-    const priceDifferencePercentage = (priceDifference / previousPrice) * 100;
 
-    if (priceDifferencePercentage > 25) {
-      shakeRef.current = true;
-      setTimeout(() => {
-        shakeRef.current = false;
-      }, 500); // Reset shake after animation duration
-    }
-    
-    if (priceDifference !== 0) {
-      displayDifferenceRef.current = true;
-      setTimeout(() => {
-        displayDifferenceRef.current = false;
-      }, 2000); // Reset after 2 seconds
-    }
-    previousPriceRef.current = price; // Update for next comparison
-
-    let newClassNames = ''; // Start with the base class
-
-    if (priceDifferencePercentage > 25 || priceDifferencePercentage < -25) {
-      newClassNames += ' symbolCard__shake';
-    }
-    
-    if(price && previousPrice && priceDifference !== 0) {
-      newClassNames += price > previousPrice ? ' symbolCard__up' : ' symbolCard__down';
-      setCardClassNames(newClassNames); // Update class names for color change
-      setTimeout(() => {
-        setCardClassNames(prev => prev.replace(/ symbolCard__up| symbolCard__down| symbolCard__shake/g, ''));
-      }, 2000);
-    }
-  }, [price]);
-  
-  const focusedClass = useMemo(() => {
-    if (activeSymbol) {
-      return activeSymbol === id ? "symbolCard__focused" : "symbolCard__not_focused";
-    }
-    return '';
-  }, [activeSymbol, id]);
-  
   return (
     <div onClick={handleOnClick} className={`symbolCard ${focusedClass}`}>
-      <div className={`symbolCard__inner ${cardClassNames}`}>
+      <div className={`symbolCard__inner${shakeClass}${upDownClass}`}>
         <SymbolCardHeader id={id} trend={trend} />
         <div className="symbolCard__content">
           <div className="symbolCard__priceSection">
@@ -91,4 +50,5 @@ const SymbolCard = ({ id, onClick, price }: SymbolCardProps) => {
     </div>
   );
 };
+
 export default SymbolCard;
