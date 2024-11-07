@@ -20,7 +20,7 @@ const SymbolCardInfo = ({ listItems }: SymbolCardInfoProps) => {
     showCardInfo && (
       <div>
         {listItems.map((listItem) => (
-          <ListItem key={listItem.label} Icon={listItem.icon} label={listItem.label} />
+          <ListItem key={listItem.label} Icon={listItem.icon} label={listItem.label} classNames='space-between' />
         ))}
       </div>
     )
