@@ -17,13 +17,13 @@ const SymbolCardInfo = ({ listItems }: SymbolCardInfoProps) => {
   console.log("SymbolCardInfo re-rendered!");
 
   return (
-    showCardInfo && (
+    showCardInfo ? (
       <div>
         {listItems.map((listItem) => (
           <ListItem key={listItem.label} Icon={listItem.icon} label={listItem.label} classNames='space-between' />
         ))}
       </div>
-    )
+    ) : null
   );
 };
 
