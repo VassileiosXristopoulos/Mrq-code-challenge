@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import './priceChart.css';
 import { Line, LineChart, XAxis, YAxis, ResponsiveContainer } from 'recharts';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
@@ -11,9 +11,25 @@ type PriceChartProps = {
 const PriceChart = ({ headerText }: PriceChartProps) => {
   const dispatch = useAppDispatch();
   const symbolId = useAppSelector((state) => state.store.activeSymbol);
+  const abortControllerRef = useRef<AbortController | null>(null);
+
   useEffect(() => {
     if (symbolId) {
-      dispatch(fetchPriceHistory(symbolId));
+      if (abortControllerRef.current) {
+        // if there is an api call already in progress, cancel it because user requested something else
+        abortControllerRef.current.abort();
+      }
+    
+      const abortController = new AbortController(); // attach an abbort controller so we can cancel previous calls if multiple happen at the same time
+      abortControllerRef.current = abortController;
+      dispatch(fetchPriceHistory({ symbolId, signal: abortController.signal }));
+    }
+    
+    return () => {
+      // If the component unmounts, cancel the api call
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
     }
   }, [dispatch, symbolId]);
 

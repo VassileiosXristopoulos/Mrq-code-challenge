@@ -1,14 +1,12 @@
 .priceChart {
   width: 400px;
-  height: 300px;
   display: flex;
   flex-direction: column;
 }
 
 @media (max-width: 1024px) {
   .priceChart {
-    max-height: 250px;
-    height: 180px;
+    height: 300px;
     width: 100%;
   }
 }
