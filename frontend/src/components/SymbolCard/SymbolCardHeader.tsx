@@ -5,7 +5,6 @@ type SymbolCardHeaderProps = {
   trend: string | null;
 };
 const SymbolCardHeader = ({ id, trend }: SymbolCardHeaderProps) => {
-  console.log("SymbolCardHeader re-rendered!")
   return (
     <div className='symbolCard__header'>
       <div className="symbolCard__header__id">{id}</div>

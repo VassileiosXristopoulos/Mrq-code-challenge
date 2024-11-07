@@ -16,7 +16,6 @@ type ListItemProps = {
   classNames?: string;
 };
 const ListItem = ({ Icon, label, spacing, classNames }: ListItemProps) => {
-  console.log("listitem re-rendered!")
   return (
     <div style={{ justifyContent: spacing }} className={`listItem ${classNames}`}>
       <div className="listItem__icon">{Icon}</div>

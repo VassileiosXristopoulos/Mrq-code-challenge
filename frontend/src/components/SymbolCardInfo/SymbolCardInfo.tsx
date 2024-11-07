@@ -14,8 +14,6 @@ type SymbolCardInfoProps = {
 const SymbolCardInfo = ({ listItems }: SymbolCardInfoProps) => {
   const showCardInfo = useAppSelector((state) => state.store.showCardInfo);
 
-  console.log("SymbolCardInfo re-rendered!");
-
   return (
     showCardInfo ? (
       <div>
