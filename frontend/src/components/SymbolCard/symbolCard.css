@@ -83,7 +83,21 @@
   }
 }
 
-@media (min-width: 1290px) {
+@media (min-width: 1024px) {
+  .symbolCard {
+    flex: 1 0 calc(50% - 10px);
+    max-width: calc(50% - 10px);
+  }
+}
+
+@media (min-width: 1240px) {
+  .symbolCard {
+    flex: 1 0 calc(33.33% - 19.98px);
+    max-width: calc(33.33% - 19.98px);
+  }
+}
+
+@media (min-width: 1440px) {
   .symbolCard {
     flex: 1 0 calc(25% - 15px);
     max-width: calc(25% - 15px);
