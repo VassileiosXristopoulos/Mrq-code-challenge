@@ -1,7 +1,107 @@
 .symbolCard {
-  border: 2px solid black; /* just for visibility, feel free to remove it */
-  margin: 10px; /* just for visibility, feel free to remove it */
-  padding: 10px; /* just for visibility, feel free to remove it */
+  flex: 1 0 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.symbolCard__up {
+  -webkit-box-shadow: -1px 2px 17px 3px var(--colorGreen);
+  -moz-box-shadow: -1px 2px 17px 3px var(--colorGreen);
+  box-shadow: -1px 2px 17px 3px var(--colorGreen);
+}
+
+.symbolCard__down {
+  -webkit-box-shadow: -1px 2px 17px 3px var(--colorRed);
+  -moz-box-shadow: -1px 2px 17px 3px var(--colorRed);
+  box-shadow: -1px 2px 17px 3px var(--colorRed);
+}
+
+.symbolCard__focused {
+  transform: scale(1.1);
+  -webkit-box-shadow: -1px 2px 17px 3px var(--colorDark);
+  -moz-box-shadow: -1px 2px 17px 3px var(--colorDark);
+  box-shadow: -1px 2px 17px 3px var(--colorDark);
+}
+
+.symbolCard__not_focused {
+  transform: scale(0.8);
+}
+
+.symbolCard:hover {
+  cursor: pointer;
+}
+
+.symbolCard__header {
+  position: relative;
+  background-color: var(--colorDark);
+  color: var(--colorWhite);
+  padding: 4px 8px;
+  font-size: 20px;
+  line-height: 150%;
+  font-weight: 700;
+  border-radius: 5px 5px 0 0;
+}
+
+.symbolCard__content {
+  background-color: var(--colorWhite);
+  padding: 10px 8px;
+  border-radius: 0 0 5px 5px;
+}
+
+.symbolCard__header__trend {
+  position: absolute;
+  right: -21px;
+  top: -20px;
+  width: 50px;
+  height: 50px;
+}
+
+.symbolCard__priceSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 10px;
+}
+
+.symbolCard_priceSection__price {
+  font-weight: 700;
+  font-size: 28px;
+}
+
+@media (min-width: 576px) {
+  .symbolCard {
+    flex: 1 0 calc(50% - 10px);
+    max-width: calc(50% - 10px);
+  }
+}
+
+@media (min-width: 992px) {
+  .symbolCard {
+    flex: 1 0 calc(33.33% - 19.98px);
+    max-width: calc(33.33% - 19.98px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .symbolCard {
+    flex: 1 0 calc(50% - 10px);
+    max-width: calc(50% - 10px);
+  }
+}
+
+@media (min-width: 1240px) {
+  .symbolCard {
+    flex: 1 0 calc(33.33% - 19.98px);
+    max-width: calc(33.33% - 19.98px);
+  }
+}
+
+@media (min-width: 1440px) {
+  .symbolCard {
+    flex: 1 0 calc(25% - 15px);
+    max-width: calc(25% - 15px);
+  }
 }
 
 .symbolCard__shake {

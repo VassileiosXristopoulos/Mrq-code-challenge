@@ -15,6 +15,9 @@
   --colorSecondary: #f2f3f3;
   --colorDark: #0e1120;
   --colorWhite: #fdfdfd;
+  --colorGreen: #00ff00;
+  --colorRed: #ff0000;
+  --colorGrey: #D3D3D3;
 
   color: var(--colorDark);
 }
@@ -72,4 +75,8 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.space-between {
+  justify-content: space-between;
 }

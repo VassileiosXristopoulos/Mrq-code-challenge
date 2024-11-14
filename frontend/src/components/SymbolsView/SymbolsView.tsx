@@ -1,25 +1,26 @@
 import SymbolsGrid from '@/components/SymbolsGrid';
 import PriceChart from '@/components/PriceChart';
 import DesktopInfo from './src/DesktopInfo';
-import { useState } from 'react';
+import { setActiveSymbol } from '@/store/dashboardOptionsSlice';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import "./symbolsView.css";
 
 const SymbolsView = () => {
-  const [activeSymbol, setActiveSymbol] = useState<null | string>(null);
+  const dispatch = useAppDispatch();
+  const activeSymbol = useAppSelector((state) => state.store.activeSymbol);
   const handleSymbolClick = (symbolId: string) => {
-    setActiveSymbol((s) => (s === symbolId ? null : symbolId));
+    const newActiveSymbol = activeSymbol === symbolId ? null : symbolId;
+    dispatch(setActiveSymbol(newActiveSymbol));
   };
 
   return (
       <div className="symbolsView">
         <DesktopInfo/>
-        <div className="symbolsView__chart">
-          <h3>PRICE HISTORY</h3>
-        </div>
         <div className="symbolsView__content">
-          <PriceChart symbolId={activeSymbol}/>
           <div className="symbolsView__cards">
             <SymbolsGrid onSymbolClick={handleSymbolClick}/>
           </div>
+          <PriceChart headerText={"PRICE HISTORY"}/>
         </div>
       </div>
   );

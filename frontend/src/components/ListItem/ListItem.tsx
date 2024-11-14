@@ -13,14 +13,15 @@ type ListItemProps = {
     | 'stretch'
     | 'baseline'
     | undefined;
+  classNames?: string;
 };
-const ListItem = ({ Icon, label, spacing }: ListItemProps) => {
+const ListItem = ({ Icon, label, spacing, classNames }: ListItemProps) => {
   return (
-    <div style={{ justifyContent: spacing }} className={`listItem`}>
+    <div style={{ justifyContent: spacing }} className={`listItem ${classNames}`}>
       <div className="listItem__icon">{Icon}</div>
       <div className="listItem__value">{label}</div>
     </div>
   );
 };
 
-export default ListItem;
+export default React.memo(ListItem);
